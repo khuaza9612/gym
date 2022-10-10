@@ -40,6 +40,10 @@ const createUser=async(req,res)=>{
     return createSendToken(user, 201, res);
     };
 
+    const updateUser=async(req,res)=>{
+        const {id}=req.params;
+    }
+
 
 
 module.exports={
