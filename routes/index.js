@@ -5,7 +5,7 @@ const router = Router();
 
  router.use(require('./user.js'));
  router.use(require('./clases.js'));
-// router.use(require('./product.js'));
+ router.use(require('./pago.js'));
 // router.use(require('./Bills.js'));
 // router.use(require('./Orders.js'));
 // router.use(require('./Reviews.js'));

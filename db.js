@@ -58,42 +58,10 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
-// const { Product, User, Order, Review,Factura} = sequelize.models;
 
-// // Aca vendrian las relaciones
-// // Product.hasMany(Reviews);
-
-// // Bill.hasOne(Order);
-// // Order.belongsTo(Bill);
-
-// // Order.belongsTo(Bill);
-// // Bill.hasOne(Order);
-
-// // User.belongsToMany(Bill, {through: "bills_user", timestamps: false});
-// // Bill.belongsTo(User, {through: "bills_user", timestamps: false});
-
-
-// User.hasMany(Order);
-// Order.belongsTo(User);
-
-
-
-// Product.belongsToMany(Order, { through: "Order_Line" });
-// Order.belongsToMany(Product, { through: "Order_Line" });
-
-// Review.belongsTo(Product);
-// Product.hasMany(Review);
-
-// Review.belongsTo(User);
-// User.hasMany(Review);
-
-// Order.hasOne(Factura);
-// Factura.belongsTo(User);
-
-
-
+const {User,Pago} = sequelize.models;
+User.hasMany(Pago);
+Pago.belongsTo(User);
 
 
 module.exports = {

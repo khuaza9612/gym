@@ -42,6 +42,27 @@ const createUser=async(req,res)=>{
 
     const updateUser=async(req,res)=>{
         const {id}=req.params;
+        const {name,lastName,email,image,password,passConfirmation,rol,isBlocked,clave}=req.body;
+        const user=await User.findOne({where:{id}});
+        if(!user){
+            return res.status(404).json({msg:'User not found'});
+        }
+        const comprePass=(a,b)=>{
+            if(a===b){
+                return true;
+            }
+            return false;
+        };
+        if(!comprePass(password,passConfirmation)){
+            return res.status(400).json({msg:'Password does not match'});
+        }
+        const beforeUpdate=async(user)=>{
+            const salt=await bcrypt.genSalt(10);
+            user.password=await bcrypt.hash(user.password,salt);
+            user.passConfirmation=user.password;}
+        await User.update({name,lastName,email,image,password,passConfirmation,rol,isBlocked,clave},{where:{id}});
+        res.status(200).json({msg:'User updated'});
+        
     }
 
 

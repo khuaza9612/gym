@@ -3,7 +3,7 @@ const sequelize = require('../db');
 //const bcrypt = require('bcrypt');
 
 module.exports = (sequelize) => {  sequelize.define(
-    'clase',
+    'pago',
     {
       id: {
         allowNull: false,
@@ -11,21 +11,15 @@ module.exports = (sequelize) => {  sequelize.define(
         primaryKey: true,
         autoIncrement: true
       },
-      date: {
-        type: DataTypes.DATE
-      },
-      profesor: {
-        type: DataTypes.STRING,
-        
-      },
-      name: {
+      
+      
+     valor: {
         type: DataTypes.STRING,
         
       }
     },
     {
-      timestamps: false,
-      
+      timestamps: true,
     }
   );
 }
