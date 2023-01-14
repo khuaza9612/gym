@@ -2,6 +2,7 @@ const { Model } = require('sequelize');
 const {User}=require('../db');
 const {bcrypt} = require("bcrypt");
 const generarTokenID=require('../utils/generarTokenUser.js');
+const {sendEmail,emailOlvidePassword}=require('../utils/email.js');
 const {createSendToken}=require('./authcontroller')
 
 const getAllUsers=async(req,res)=>{
@@ -37,8 +38,18 @@ const createUser=async(req,res)=>{
         user.password=await bcrypt.hash(user.password,salt);
         user.passConfirmation=user.password;}
     const user=await User.create({name,lastName,email,image,password,passConfirmation,rol,isBlocked:"false",clave:generarTokenID()});
+    const createdUser = user.dataValues;
+
+    sendEmail({
+       
+        name: user.nombre,
+        email: user.email,
+       
+      });
+    
     return createSendToken(user, 201, res);
-    };
+  
+  };
 
     const updateUser=async(req,res)=>{
         const {id}=req.params;

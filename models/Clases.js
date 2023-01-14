@@ -12,7 +12,7 @@ module.exports = (sequelize) => {  sequelize.define(
         autoIncrement: true
       },
       date: {
-        type: DataTypes.DATE
+        type: DataTypes.STRING
       },
       profesor: {
         type: DataTypes.STRING,
@@ -21,7 +21,10 @@ module.exports = (sequelize) => {  sequelize.define(
       name: {
         type: DataTypes.STRING,
         
-      }
+      },
+      image: {
+        type: DataTypes.STRING,
+      },
     },
     {
       timestamps: false,

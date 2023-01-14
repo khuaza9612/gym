@@ -30,8 +30,8 @@ const getClaseByname = async (req, res) => {
   };
 
   const postClase = async (req, res) => {
-    const{date,profesor,name}=req.body;
-    const clase=await Clase.create({date,profesor,name});
+    const{date,profesor,name,image}=req.body;
+    const clase=await Clase.create({date,profesor,name,image});
     res.json(clase);
     }
  const deletaClase = async (req, res) => {
